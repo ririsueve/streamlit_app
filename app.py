@@ -22,14 +22,34 @@ custom_css = """
     background-attachment: fixed;
 }
 
-/* 2. CANH GIỮA HOÀN TOÀN CẢ NGANG LẪN DỌC */
+/* 2. KHUNG TỔNG ÉP 2 LỚP NỀN */
 .block-container {
-    background-color: rgba(255, 255, 255, 0.85); 
-    border-radius: 30px; 
-    padding: 3rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+    /* Gộp cả 2 lớp nền vào chung: Lớp trắng mờ ở trên, lớp ảnh ở dưới */
+    background-image: 
+        /* Lớp 1 (NEN-MO): Dùng gradient trải đều màu trắng mờ 88.8% */
+        linear-gradient(rgba(255, 255, 255, 0.888), rgba(255, 255, 255, 0.888)),
+        /* Lớp 2 (NEN-ANH): Ảnh background của bạn */
+        url("https://wptutbyserahwang.wordpress.com/wp-content/uploads/2020/04/191.jpg?w=560");
+    
+    background-size: cover;
+    background-position: center;
+
+    /* 🟢 TUYỆT CHIÊU CẮT LỚP Ở ĐÂY 🟢 */
+    /* Lớp trắng mờ sẽ dừng lại ở mép trong, còn lớp ảnh sẽ tràn ra ngoài tạo thành viền */
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+
+    /* Độ dày của phần viền ảnh (Thay cho padding 2% của bạn) */
+    border: 20px solid transparent !important; 
+    border-radius: 20px; 
+    
+    padding: 2rem; /* Khoảng đệm của NEN-MO */
+    
     max-width: 750px !important; 
     margin: auto !important; 
+    
+    /* Vẫn giữ lại quả bóng đổ 30 độ siêu nghệ thuật */
+    box-shadow: -15px 26px 50px rgba(30, 58, 138, 0.3) !important; 
 }
 
 div[data-testid="stMain"] {
