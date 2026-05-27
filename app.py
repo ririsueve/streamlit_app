@@ -1,7 +1,7 @@
 import streamlit as st
 
 # 1. Cài đặt tiêu đề trang web
-st.set_page_config(page_title="App Tính Tổng Teal", layout="centered")
+st.set_page_config(page_title="App Tính Tổng", layout="centered")
 
 # 2. Đưa đoạn CSS màu XANH TEAL & nền mây trời vào
 custom_css = """
