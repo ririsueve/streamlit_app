@@ -1,14 +1,17 @@
 import streamlit as st
 
 # 1. Cài đặt tiêu đề trang web
-st.set_page_config(page_title="App Tính Tổng", layout="centered")
+st.set_page_config(page_title="App Tính Tổng - Montserrat Blue", layout="centered")
 
-# 2. Đưa đoạn CSS màu XANH TEAL & nền mây trời vào
+# 2. Đưa đoạn CSS font Montserrat & màu XANH DƯƠNG vào
 custom_css = """
 <style>
-/* 1. ĐỔI TOÀN BỘ FONT THÀNH TIMES NEW ROMAN */
+/* Nạp font Montserrat từ Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* 1. ĐỔI TOÀN BỘ FONT THÀNH MONTSERRAT */
 * {
-    font-family: 'Times New Roman', Times, serif !important;
+    font-family: 'Montserrat', sans-serif !important;
 }
 
 /* Nền mây trời */
@@ -38,49 +41,51 @@ button[aria-label="Step Up"], button[aria-label="Step Down"] {
     display: none !important;
 }
 
-/* Viền ô nhập số màu XANH NHẠT (#3BC1A8) */
+/* Viền ô nhập số đổi sang màu XANH DƯƠNG NHẠT TRỰC QUAN */
 div[data-baseweb="input"] > div, 
 div[data-baseweb="number-input"] > div {
     border-radius: 15px !important; 
-    border: 2px solid #3BC1A8 !important; 
-    background-color: #f0fbf9 !important; /* Nền xanh rất nhạt */
+    border: 2px solid #93c5fd !important; 
+    background-color: #eff6ff !important; /* Nền trong ô xanh dương siêu nhạt */
 }
 
-/* Chữ người dùng nhập vào màu XANH ĐẬM NHẤT (#005461) */
+/* Chữ số người dùng nhập vào màu XANH DƯƠNG ĐẬM */
 input {
-    color: #005461 !important; 
-    -webkit-text-fill-color: #005461 !important;
+    color: #1e3a8a !important; 
+    -webkit-text-fill-color: #1e3a8a !important;
     font-weight: bold !important;
     font-size: 1.2rem !important;
     text-align: center !important; 
 }
 
-/* 4. SỬA NÚT TÍNH TOÁN BẰNG BỘ MÀU XANH TEAL */
+/* 4. SỬA NÚT TÍNH TOÁN THÀNH MÀU XANH DƯƠNG */
 button[data-testid="baseButton-primary"] {
-    background-color: #249E94 !important; 
+    background-color: #3b82f6 !important; /* Nền nút Xanh dương sáng */
     border: none !important;
     border-radius: 25px !important; 
     padding: 0.75rem 2rem !important;
-    box-shadow: 0 4px 10px rgba(36, 158, 148, 0.4); 
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4); /* Bóng đổ xanh dương mờ */
     width: 100%; 
     margin-top: 20px !important; 
     transition: all 0.3s ease;
 }
 
+/* Chữ trắng nổi bật trên nền nút xanh dương */
 button[data-testid="baseButton-primary"] * {
     color: #ffffff !important; 
     font-weight: bold !important;
     font-size: 1.2rem !important;
 }
 
+/* Hiệu ứng khi rê chuột vào nút tính toán */
 button[data-testid="baseButton-primary"]:hover {
-    background-color: #0C7779 !important; 
+    background-color: #1d4ed8 !important; /* Đổi sang màu Xanh dương đậm đầm mắt hơn */
     transform: translateY(-2px); 
 }
 
-/* Đổi màu chữ tiêu đề thành XANH (#0C7779) */
+/* Đổi màu chữ tiêu đề và văn bản thành XANH DƯƠNG ĐẬM */
 h1, h2, h3, h4, p {
-    color: #0C7779 !important;
+    color: #1e3a8a !important;
 }
 
 /* 5. CÔNG CỤ CANH GIỮA DẤU CỘNG, BẰNG, HỎI CHẤM */
@@ -92,7 +97,7 @@ h1, h2, h3, h4, p {
     min-height: 45px;
     font-size: 2rem;
     font-weight: bold;
-    color: #0C7779;
+    color: #1e3a8a;
 }
 </style>
 """
