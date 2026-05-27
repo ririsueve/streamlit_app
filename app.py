@@ -27,7 +27,7 @@ custom_css = """
     background-color: rgba(255, 255, 255, 0.85); 
     border-radius: 30px; 
     padding: 3rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+    box-shadow: -15px 26px 50px rgba(30, 58, 138, 0.3) !important; 
     max-width: 750px !important; 
     margin: auto !important; 
 }
