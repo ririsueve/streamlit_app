@@ -8,7 +8,7 @@ custom_css = """
 <style>
 /* Nền mây trời */
 .stApp {
-    background-image: url("https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?q=80&w=1974&auto=format&fit=crop"); 
+    background-image: url("https://images.pexels.com/photos/37060630/pexels-photo-37060630.jpeg"); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
