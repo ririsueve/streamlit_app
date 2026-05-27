@@ -14,13 +14,22 @@ custom_css = """
     background-attachment: fixed;
 }
 
-/* Khung kính mờ (Giữ nguyên) */
+/* 2. CANH GIỮA HOÀN TOÀN CẢ NGANG LẪN DỌC */
 .block-container {
     background-color: rgba(255, 255, 255, 0.85); 
     border-radius: 30px; 
     padding: 3rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
-    margin-top: 2rem;
+    
+    max-width: 750px !important; 
+    
+    /* 🟢 ĐỔI Ở ĐÂY: Xóa margin-top cũ đi, dùng auto cho tất cả các bên */
+    margin: auto !important; 
+}
+
+/* 🟢 BỔ SUNG THÊM: Ép toàn bộ vùng chứa chính của Streamlit phải căn giữa theo chiều dọc */
+div[data-testid="stMain"] {
+    justify-content: center !important;
 }
 
 /* Bo tròn ô nhập số, viền hồng (Giữ nguyên) */
