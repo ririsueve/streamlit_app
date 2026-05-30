@@ -68,29 +68,41 @@ input {
     font-weight: bold !important;
     text-align: center !important; 
 }
+/* 🟢 1. ÉP KHUNG CHỨA NÚT NẰM GIỮA MÀN HÌNH */
+div.stButton {
+    display: flex !important;
+    justify-content: center !important; /* Căn giữa mọi thứ bên trong */
+    margin-top: 20px !important;
+}
+
+/* 🟢 2. NẶN HÌNH DÁNG NÚT: TO HƠN, RỘNG HƠN */
 button[data-testid="baseButton-primary"] {
-    background-color: #3b82f6 !important; /* Nền xanh dương */
+    background-color: #3b82f6 !important; 
     border: none !important;
-    border-radius: 25px !important; 
-    padding: 0.75rem 2rem !important;
-    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4) !important; 
-    width: 100% !important; 
-    margin-top: 10px !important; 
+    border-radius: 50px !important; /* Bo tròn thành viên thuốc */
+    padding: 15px 40px !important; /* Phóng to lớp đệm cho nút mập lên */
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4) !important; 
+    width: 60% !important; /* Cố định chiều rộng 60% để nó không bị bè ra hết 2 bên */
     transition: all 0.3s ease !important;
 }
 
-/* 🟢 PHẦN 2: ÉP CHỮ BÊN TRONG THÀNH MÀU TRẮNG VÀ IN ĐẬM */
-button[data-testid="baseButton-primary"],
+/* 🟢 3. ÉP CHỮ BÊN TRONG: TRẮNG BÓC, TO VÀ SIÊU ĐẬM */
+button[data-testid="baseButton-primary"] p,
+button[data-testid="baseButton-primary"] div,
+button[data-testid="baseButton-primary"] span,
 button[data-testid="baseButton-primary"] * {
-    color: #ffffff !important; 
-    font-weight: bold !important; 
-    font-size: 1.2rem !important; 
+    color: #ffffff !important; /* Trắng tinh khôi */
+    font-weight: 900 !important; /* 900 là độ in đậm tối đa */
+    font-size: 1.6rem !important; /* Phóng to size chữ */
+    letter-spacing: 2px !important; /* Giãn cách các chữ cái ra một xíu cho sang */
+    text-transform: uppercase !important; /* Ép viết hoa toàn bộ */
 }
 
-/* 🟢 PHẦN 3: HIỆU ỨNG RÊ CHUỘT VÀO NÚT */
+/* 🟢 4. HIỆU ỨNG NHẢY LÊN KHI RÊ CHUỘT */
 button[data-testid="baseButton-primary"]:hover {
-    background-color: #1d4ed8 !important; /* Nền xanh đậm hơn chút */
-    transform: translateY(-2px) !important; 
+    background-color: #1d4ed8 !important; 
+    transform: translateY(-4px) !important; /* Nảy lên cao hơn xíu */
+    box-shadow: 0 12px 25px rgba(59, 130, 246, 0.6) !important; /* Bóng đổ đậm hơn */
 }
 
 h1, h2, h3, h4, p, label {
@@ -155,7 +167,7 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 tieu_de_html = """
 <div style="text-align: center; margin-top: -20px; margin-bottom: 30px;">
-    <span style="display: inline-block; background: white; padding: 5px 25px; font-size: 24px; font-weight: bold; color: #1e3a8a; border-radius: 10px; border: 2px solid #3b82f6;">
+    <span style="display: inline-block; background: white; padding: 10px 30px; font-size: 24px; font-weight: bold; color: #1e3a8a; border-radius: 15px; box-shadow: 0 8px 25px rgba(30, 58, 138, 0.15);">
         🧩 QUY HOẠCH TUYẾN TÍNH (SIMPLEX)
     </span>
 </div>
