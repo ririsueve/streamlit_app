@@ -136,6 +136,13 @@ button[data-testid="baseButton-primary"]:hover {
     box-shadow: 0 12px 25px rgba(59, 130, 246, 0.6) !important; /* Bóng đổ đậm hơn */
 }
 
+div[data-testid="stButton"] > button{
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+    gap:8px !important;
+}
+
 h1, h2, h3, h4, p, label {
     color: #1e3a8a !important;
 }
