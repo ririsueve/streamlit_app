@@ -27,7 +27,7 @@ custom_css = """
 .block-container {
     background-color: rgba(255, 255, 255, 0.95); 
     border-radius: 25px !important; 
-    padding: 3rem;
+    padding: 5rem;
     box-shadow: 
         /* Lớp 1 (Trên cùng): Đệm màu xanh nhạt dày 25px */
         inset 0 0 0 15px #dbeafe, 
