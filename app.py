@@ -5,6 +5,11 @@ from matplotlib.patches import Polygon
 from fractions import Fraction
 import re
 import copy
+import os
+
+os.makedirs(".streamlit", exist_ok=True)
+with open(".streamlit/config.toml", "w") as f:
+    f.write('[theme]\nprimaryColor="#3b82f6"\n')
 
 # ==========================================
 # 1. CÀI ĐẶT GIAO DIỆN & CSS
