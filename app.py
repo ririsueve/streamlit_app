@@ -69,23 +69,50 @@ input {
     text-align: center !important; 
 }
 
-/* 🟢 1. ÉP CÁI KHUNG BỌC NGOÀI CÙNG CỦA NÚT PHẢI CĂN GIỮA */
-div[data-testid="stButton"] {
-    display: flex !important;
-    justify-content: center !important; /* Đẩy mọi thứ bên trong ra giữa */
-    width: 100% !important; /* Ép khung rộng ngang hết cỡ */
-    margin-top: 20px !important;
+div[data-testid="stButton"]{
+    width:100% !important;
+    display:flex !important;
+    justify-content:center !important;
+    margin-top:20px !important;
 }
 
-/* 🟢 NẶN HÌNH DÁNG NÚT */
-button[data-testid="baseButton-primary"] {
-    background-color: #3b82f6 !important; 
-    border: none !important;
-    border-radius: 50px !important; 
-    padding: 15px 40px !important; 
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4) !important; 
-    width: 100% !important; /* Quan trọng: Ép nó rộng 100% để lấp đầy cái cột ở giữa */
-    transition: all 0.3s ease !important;
+div[data-testid="stButton"] > button{
+    width:100% !important;
+
+    background:#3b82f6 !important;
+    color:white !important;
+
+    border:none !important;
+    border-radius:50px !important;
+
+    padding:16px 40px !important;
+
+    font-size:1.35rem !important;
+    font-weight:900 !important;
+    letter-spacing:2px !important;
+    text-transform:uppercase !important;
+
+    box-shadow:0 8px 20px rgba(59,130,246,0.4) !important;
+
+    transition:all 0.3s ease !important;
+}
+
+div[data-testid="stButton"] > button *{
+    color:white !important;
+    font-weight:900 !important;
+    font-size:1.35rem !important;
+    letter-spacing:2px !important;
+    text-transform:uppercase !important;
+}
+
+div[data-testid="stButton"] > button:hover{
+    background:#1d4ed8 !important;
+    transform:translateY(-4px) !important;
+    box-shadow:0 12px 25px rgba(59,130,246,0.6) !important;
+}
+
+div[data-testid="stButton"] > button:focus{
+    outline:none !important;
 }
 
 /* Các đoạn ÉP CHỮ và HIỆU ỨNG RÊ CHUỘT bên dưới vẫn giữ nguyên y xì cũ nha */
@@ -766,14 +793,14 @@ def format_equation(var_name, expr_dict, N_vars):
 # ==========================================
 st.write("")
 
-# 🟢 TUYỆT CHIÊU CĂN GIỮA BẰNG CỘT CỦA STREAMLIT
-# Chia màn hình làm 3 cột theo tỷ lệ: Cột trái (1 phần) - Cột giữa (2 phần) - Cột phải (1 phần)
 col_btn1, col_btn2, col_btn3 = st.columns([1, 2, 1])
 
-# Nhét cái nút vào đúng cái cột ở giữa
 with col_btn2:
-    btn_solve = st.button("GIẢI BÀI TOÁN", type="primary")
-
+    btn_solve = st.button(
+        "🚀 GIẢI BÀI TOÁN",
+        type="primary",
+        use_container_width=True
+    )
 # Nếu nút được bấm thì chạy thuật toán
 if btn_solve:
     solver = SimplexDictionarySolver(
