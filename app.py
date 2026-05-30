@@ -39,7 +39,7 @@ custom_css = """
     
         /* Lớp 2: Bóng mờ 30 độ rớt ra ngoài màn hình (Giữ nguyên của bạn) */
         -15px 26px 50px rgba(30, 58, 138, 0.3) !important;
-    border: 5px double #3b82f6 !important; 
+    border: 5px inset #3b82f6 !important; 
     max-width: 900px !important; 
     margin: auto !important; 
     margin-top: 8vh !important; 
@@ -60,9 +60,13 @@ input {
     font-weight: bold !important;
     text-align: center !important; 
 }
-
+button[data-testid="baseButton-primary"],
+button[data-testid="baseButton-primary"] p,
+button[data-testid="baseButton-primary"] span,
 button[data-testid="baseButton-primary"] {
-    background-color: #3b82f6 !important; 
+    background-color: #ffffff !important; 
+    font-weight: bold !important; /* In đậm */
+    font-size: 1.2rem !important; /* Phóng to chữ lên chút cho dễ nhìn */
     border: none !important;
     border-radius: 25px !important; 
     padding: 0.75rem 2rem !important;
