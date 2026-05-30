@@ -26,7 +26,7 @@ custom_css = """
 
 .block-container {
     background-color: rgba(255, 255, 255, 0.95); 
-    border-radius: 15px !important; 
+    border-radius: 40px !important; 
     padding: 3rem;
     box-shadow: 
         /* Lớp 1 (Trên cùng): Đệm màu xanh nhạt dày 25px */
