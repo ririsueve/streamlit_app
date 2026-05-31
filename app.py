@@ -54,12 +54,30 @@ html, body, p, div, h1, h2, h3, h4, h5, h6, span, button, input, label, li, tabl
     margin-bottom: 8vh !important;
 }
 
-div[data-baseweb="input"] > div, 
-div[data-baseweb="number-input"] > div,
+/* 🟢 1. NẶN HÌNH CHO Ô CHỌN (SELECT BOX) - GIỮ NGUYÊN NHƯ CŨ */
 div[data-baseweb="select"] > div {
     border-radius: 10px !important; 
     border: 3px solid #93c5fd !important; 
-    background-color: #eff6ff !important;
+    background-color: #eff6ff !important; 
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+}
+
+/* 🟢 2. NẶN HÌNH CHO Ô NHẬP SỐ - ÔM TRỌN CẢ NÚT CỘNG/TRỪ */
+/* Bọc viền xanh và đổ nền xanh cho cái vỏ ngoài cùng */
+div[data-testid="stNumberInput"] div[data-baseweb="input"] {
+    border-radius: 10px !important; 
+    border: 3px solid #93c5fd !important; 
+    background-color: #eff6ff !important; 
+    overflow: hidden !important; /* Quan trọng: Gọt sạch các góc vuông của nút bị dư ra */
+}
+
+/* Tắt bỏ cái viền lõi bị dư thừa bên trong, để số hòa làm một với nền ngoài */
+div[data-testid="stNumberInput"] div[data-baseweb="input"] > div {
+    border: none !important;
+    background-color: transparent !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
 }
 
 input {
