@@ -751,24 +751,19 @@ for j in range(n_vars):
 
 st.markdown("### 3. Hệ ràng buộc")
 
-# 🟢 TẠO DÒNG TIÊU ĐỀ (HEADER) MỎNG NHẸ GIỐNG PHẦN HÀM MỤC TIÊU
+# 🟢 1. TẠO DÒNG TIÊU ĐỀ (HEADER) MỎNG NHẸ
 cols_header = st.columns(n_vars + 2)
 for j in range(n_vars):
-    with cols_cons[j]:
-        # Đổi thành text_input, giá trị mặc định là chữ "0"
-        val = st.text_input(f"x{j+1}", value="0", key=f"A_{i}_{j}", label_visibility="collapsed")
-        row_A.append(val)
-    A_matrix.append(row_A)
-    
-with cols_cons[n_vars]:
-    sign = st.selectbox("Dấu", ["<=", ">=", "="], key=f"sign_{i}", label_visibility="collapsed")
-    bound_signs.append(sign)
+    with cols_header[j]:
+        st.markdown(f"<div style='font-size: 14px; color: #1e3a8a; padding-bottom: 5px;'>x{j+1}</div>", unsafe_allow_html=True)
         
-with cols_cons[n_vars + 1]:
-    # Đổi thành text_input, giá trị mặc định là chữ "0"
-    b_val = st.text_input("b", value="0", key=f"b_{i}", label_visibility="collapsed")
-    b_vector.append(b_val)
+with cols_header[n_vars]:
+    st.markdown("<div style='font-size: 14px; color: #1e3a8a; padding-bottom: 5px;'>Dấu</div>", unsafe_allow_html=True)
+    
+with cols_header[n_vars + 1]:
+    st.markdown("<div style='font-size: 14px; color: #1e3a8a; padding-bottom: 5px;'>b</div>", unsafe_allow_html=True)
 
+# 🟢 2. VÒNG LẶP TẠO Ô NHẬP LIỆU (Đã đổi hết sang text_input để gõ phân số)
 A_matrix = []
 b_vector = []
 bound_signs = []
@@ -779,8 +774,7 @@ for i in range(n_cons):
     
     for j in range(n_vars):
         with cols_cons[j]:
-            # Các ô nhập liệu bên dưới vẫn giữ nguyên trạng thái "collapsed" (ẩn nhãn)
-            val = st.number_input(f"x{j+1}", value=0.0, step=1.0, key=f"A_{i}_{j}", label_visibility="collapsed")
+            val = st.text_input(f"x{j+1}", value="0", key=f"A_{i}_{j}", label_visibility="collapsed")
             row_A.append(val)
     A_matrix.append(row_A)
     
@@ -789,7 +783,7 @@ for i in range(n_cons):
         bound_signs.append(sign)
         
     with cols_cons[n_vars + 1]:
-        b_val = st.number_input("b", value=0.0, step=1.0, key=f"b_{i}", label_visibility="collapsed")
+        b_val = st.text_input("b", value="0", key=f"b_{i}", label_visibility="collapsed")
         b_vector.append(b_val)
 
 st.markdown("### 4. Ràng buộc dấu của biến")
