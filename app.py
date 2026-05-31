@@ -198,7 +198,48 @@ ul[data-baseweb="menu"] li {
     font-weight: bold !important; 
     color: #1e3a8a !important; /* Đảm bảo màu xanh đậm tone-sur-tone */
 }
+/* =========================================
+   📱 TỐI ƯU GIAO DIỆN CHO ĐIỆN THOẠI (DƯỚI 768PX)
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. Ép mỏng lớp viền xanh và phần đệm trắng ngoài cùng để tiết kiệm diện tích */
+    .block-container {
+        padding: 1.5rem 1rem !important; 
+        box-shadow: inset 0 0 0 10px #dbeafe, -5px 10px 20px rgba(30, 58, 138, 0.2) !important;
+        border-width: 3px !important;
+        margin-top: 3vh !important;
+        margin-bottom: 3vh !important;
+    }
 
+    /* 2. Thu nhỏ chữ của khối Tiêu đề 🧩 */
+    div > span[style*="font-size: 24px"] {
+        font-size: 18px !important;
+        padding: 8px 15px !important;
+    }
+
+    /* 3. Hạ kích cỡ của nút bấm "GIẢI BÀI TOÁN" và dàn đều ra */
+    div[data-testid="stButton"] > button {
+        padding: 12px 20px !important;
+        font-size: 1.2rem !important;
+        width: 100% !important; 
+    }
+    
+    div[data-testid="stButton"] > button * {
+        font-size: 1.2rem !important;
+    }
+
+    /* 4. Giảm nhẹ cỡ chữ trong các ô nhập số để không bị tràn vỡ khung */
+    input {
+        font-size: 1rem !important;
+    }
+    
+    /* 5. Căn chỉnh lại độ cao của ô nhập liệu trên mobile */
+    div[data-testid="stNumberInput"] div[data-baseweb="input"] > div,
+    div[data-baseweb="select"] > div {
+        padding-top: 4px !important;
+        padding-bottom: 4px !important;
+    }
+}
 </style>
 """
 st.markdown(custom_css, unsafe_allow_html=True)
