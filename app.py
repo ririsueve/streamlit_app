@@ -754,20 +754,20 @@ st.markdown("### 3. Hệ ràng buộc")
 # 🟢 TẠO DÒNG TIÊU ĐỀ (HEADER) MỎNG NHẸ GIỐNG PHẦN HÀM MỤC TIÊU
 cols_header = st.columns(n_vars + 2)
 for j in range(n_vars):
-        with cols_cons[j]:
-            # Đổi thành text_input, giá trị mặc định là chữ "0"
-            val = st.text_input(f"x{j+1}", value="0", key=f"A_{i}_{j}", label_visibility="collapsed")
-            row_A.append(val)
+    with cols_cons[j]:
+        # Đổi thành text_input, giá trị mặc định là chữ "0"
+        val = st.text_input(f"x{j+1}", value="0", key=f"A_{i}_{j}", label_visibility="collapsed")
+        row_A.append(val)
     A_matrix.append(row_A)
     
-    with cols_cons[n_vars]:
-        sign = st.selectbox("Dấu", ["<=", ">=", "="], key=f"sign_{i}", label_visibility="collapsed")
-        bound_signs.append(sign)
+with cols_cons[n_vars]:
+    sign = st.selectbox("Dấu", ["<=", ">=", "="], key=f"sign_{i}", label_visibility="collapsed")
+    bound_signs.append(sign)
         
-    with cols_cons[n_vars + 1]:
-        # Đổi thành text_input, giá trị mặc định là chữ "0"
-        b_val = st.text_input("b", value="0", key=f"b_{i}", label_visibility="collapsed")
-        b_vector.append(b_val)
+with cols_cons[n_vars + 1]:
+    # Đổi thành text_input, giá trị mặc định là chữ "0"
+    b_val = st.text_input("b", value="0", key=f"b_{i}", label_visibility="collapsed")
+    b_vector.append(b_val)
 
 A_matrix = []
 b_vector = []
