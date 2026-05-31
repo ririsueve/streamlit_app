@@ -749,6 +749,19 @@ for j in range(n_vars):
         c_coeffs.append(val)
 
 st.markdown("### 3. Hệ ràng buộc")
+
+# 🟢 TẠO DÒNG TIÊU ĐỀ (HEADER) NẰM NGAY TRÊN ĐẦU CÁC CỘT
+cols_header = st.columns(n_vars + 2)
+for j in range(n_vars):
+    with cols_header[j]:
+        st.markdown(f"<div style='text-align: center; font-weight: bold; font-size: 1.1rem; color: #1e3a8a;'>x{j+1}</div>", unsafe_allow_html=True)
+        
+with cols_header[n_vars]:
+    st.markdown("<div style='text-align: center; font-weight: bold; font-size: 1.1rem; color: #1e3a8a;'>Dấu</div>", unsafe_allow_html=True)
+    
+with cols_header[n_vars + 1]:
+    st.markdown("<div style='text-align: center; font-weight: bold; font-size: 1.1rem; color: #1e3a8a;'>b</div>", unsafe_allow_html=True)
+
 A_matrix = []
 b_vector = []
 bound_signs = []
@@ -759,6 +772,7 @@ for i in range(n_cons):
     
     for j in range(n_vars):
         with cols_cons[j]:
+            # Các ô nhập liệu bên dưới vẫn giữ nguyên trạng thái "collapsed" (ẩn nhãn)
             val = st.number_input(f"x{j+1}", value=0.0, step=1.0, key=f"A_{i}_{j}", label_visibility="collapsed")
             row_A.append(val)
     A_matrix.append(row_A)
@@ -830,7 +844,7 @@ if btn_solve:
     st.markdown("### 📊 KẾT QUẢ")
     
     if solver.status == "INFEASIBLE":
-        st.error("🚨 Bài toán VÔ NGHIỆM (Không tìm thấy miền khả thi).")
+        st.error("🚨 Bài toán VÔ NGHIỆM (Không tìm thấy miền chấp nhận được).")
     elif solver.status == "UNBOUNDED":
         st.warning("⚠️ Bài toán KHÔNG GIỚI NỘI (Unbounded).")
     elif solver.status == "MAX_ITERATIONS_REACHED":
@@ -856,10 +870,9 @@ if btn_solve:
         else:
             st.info(f"*(Không vẽ đồ thị: {plot_msg})*")
     
-    # 🟢 IN LỊCH SỬ CÁC BƯỚC TỪ VỰNG 🟢
+# 🟢 IN LỊCH SỬ CÁC BƯỚC TỪ VỰNG 🟢
     st.markdown("### 📝 CHI TIẾT TỪ VỰNG (BƯỚC LẶP)")
     
-    # Dùng hộp thoại ẩn/hiện (expander) để trang web không bị dài quá mức
     with st.expander("Bấm vào đây để xem chi tiết từng bảng Từ vựng"):
         if not solver.history:
             st.info("Chưa có bước lặp nào được ghi nhận.")
@@ -867,8 +880,28 @@ if btn_solve:
             for idx, step in enumerate(solver.history):
                 st.markdown(f"**🔹 BƯỚC {idx}** *(Cơ sở B = {step['B']} | Phi cơ sở N = {step['N']})*")
                 
-                # In hàm Z
-                z_eq = format_equation("Z", step['obj'], step['N'])
+                # 🟢 DÙNG LOGIC SO SÁNH TẬP HỢP ĐỂ TÌM BIẾN VÀO/RA (Không cần sửa thuật toán gốc)
+                if idx < len(solver.history) - 1:
+                    next_step = solver.history[idx + 1]
+                    # Lấy B của bước sau trừ B của bước hiện tại -> Lòi ra Biến vào
+                    enter_var = list(set(next_step['B']) - set(step['B']))
+                    # Lấy B của bước hiện tại trừ B của bước sau -> Lòi ra Biến ra
+                    leave_var = list(set(step['B']) - set(next_step['B']))
+                    
+                    if enter_var and leave_var:
+                        st.markdown(f"<p style='margin-top: -10px; font-size: 1rem;'>"
+                                    f"<span style='color: #dc2626; font-weight: bold;'>🎯 Chuẩn bị xoay - Biến vào: {enter_var[0]}</span> &nbsp; | &nbsp; "
+                                    f"<span style='color: #16a34a; font-weight: bold;'>🚪 Biến ra: {leave_var[0]}</span></p>", 
+                                    unsafe_allow_html=True)
+                else:
+                    # Nếu là bước cuối cùng thì không còn biến vào/ra nữa
+                    st.markdown(f"<p style='margin-top: -10px; color: #2563eb; font-weight: bold;'>✅ Bảng tối ưu (Kết thúc giải thuật)</p>", unsafe_allow_html=True)
+                
+                # Xác định tên hàm mục tiêu là W (Pha 1) hay Z (Pha 2)
+                func_name = "W" if 'x0' in step['N'] or 'x0' in step['B'] else "Z"
+                
+                # In hàm Z/W
+                z_eq = format_equation(func_name, step['obj'], step['N'])
                 st.markdown(f"<div class='history-eq'><b>{z_eq}</b></div>", unsafe_allow_html=True)
                 
                 # In các phương trình w_i, x_i
@@ -877,4 +910,4 @@ if btn_solve:
                         eq_str = format_equation(b_var, step['dict'][b_var], step['N'])
                         st.markdown(f"<div class='history-eq'>{eq_str}</div>", unsafe_allow_html=True)
                 
-                st.write("") # Tạo khoảng trống giữa các bước
+                st.write("") # Tạo khoảng trống
